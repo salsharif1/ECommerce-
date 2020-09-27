@@ -13,7 +13,7 @@ public class GenericUtils extends BaseTest{
 	}
 	public static void gSelectByValue(WebElement element, String value) {
 		Select select = new Select(element);
-		select.deselectByValue(value);
+		select.selectByValue(value);
 	}
 	public static void gSelectByVisibleText(WebElement element, String v) {
 		Select select = new Select(element);

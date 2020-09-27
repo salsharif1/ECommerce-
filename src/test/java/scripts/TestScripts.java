@@ -1,23 +1,26 @@
 package scripts;
 
 import java.awt.AWTException;
+import java.io.IOException;
 
+import org.apache.poi.EncryptedDocumentException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import generic.BasePage;
 import generic.BaseTest;
+import generic.Excel;
 import generic.GenericUtils;
 import pom.HomePage;
 
 public class TestScripts extends BaseTest {
 	@Test(enabled=true)
-	public void testEveningDressesPurchase() {
+	public void testEveningDressesPurchase() throws EncryptedDocumentException, IOException {
 		HomePage p = new HomePage(driver);
 		p.clickSignIn();
-		p.enterEmailAddress("salimalsharif1@gmail.com");
-		p.setPassword("leen1");
+		p.enterEmailAddress(Excel.readData("Sheet1", 0, 1));
+		p.setPassword(Excel.readData("Sheet1", 1, 1));
 		p.clickLogin();
 		p.clickDresses();
 		p.clickEveningDresses();
@@ -186,11 +189,11 @@ public class TestScripts extends BaseTest {
 							
 	}
 	@Test(enabled=true)
-	public void test8CompareDresses() throws InterruptedException, AWTException {
+	public void test8CompareDresses() throws InterruptedException, AWTException, EncryptedDocumentException, IOException {
 		HomePage p = new HomePage(driver);
 		p.clickSignIn();
-		p.enterEmailAddress("salimalsharif1@gmail.com");
-		p.setPassword("leen1");
+		p.enterEmailAddress(Excel.readData("Sheet1", 0, 1));
+		p.setPassword(Excel.readData("Sheet1", 1, 1));
 		p.clickLogin();
 		
 		GenericUtils.hover(driver, driver.findElement(By.xpath("//a[@title='Women']")));
